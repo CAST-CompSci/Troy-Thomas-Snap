@@ -29,5 +29,20 @@ namespace Snap_Game
                 Game();
             }
         }
+        
+        static void Menu()
+        {
+            string Option;
+            while (true)
+            {
+                Console.WriteLine("Welcome to Snap \n 1. Play \n 2. Quit");
+                Option = Console.ReadLine();
+
+                if (Option == "1")
+                    break;
+                else
+                    Environment.Exit(1);
+            }
+        }
     }
 }
