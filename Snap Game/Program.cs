@@ -102,7 +102,7 @@ namespace Snap_Game
             Random rnd = new Random();
             for (int a = 0; a <=25; a++)
             {
-                int randomNumber = rnd.Next(0, 51);
+                int randomNumber = rnd.Next(52);
                 if (cardArray[randomNumber].isUsed == true)
                 {
                     a--;
@@ -116,14 +116,14 @@ namespace Snap_Game
 
             for (int a = 0; a <=25; a++)
             {
-                int randomNumber = rnd.Next(0, 51);
+                int randomNumber = rnd.Next(52);
                 if (cardArray[randomNumber].isUsed == true)
                 {
                     a--;
                 }
                 else
                 {
-                    playerOneQueue.Enqueue(cardArray[randomNumber]);
+                    playerTwoQueue.Enqueue(cardArray[randomNumber]);
                     cardArray[randomNumber].isUsed = true;
                 }
             }
