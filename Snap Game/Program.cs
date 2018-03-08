@@ -192,7 +192,7 @@ namespace Snap_Game
             string number = card.number;
             string suitChar = card.suitSymbol;
 
-            Curset = delegate { Console.CursorTop = Console.CursorTop + 1; Console.CursorLeft + 16};
+            Curset = delegate { Console.CursorTop = Console.CursorTop + 1; Console.CursorLeft = Console.CursorLeft - 16; };
 
             if (number.Length == 1)
             {
