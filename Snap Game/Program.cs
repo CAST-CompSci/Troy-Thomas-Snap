@@ -17,7 +17,7 @@ namespace Snap_Game
         static Stack<Card> playerOneStack = new Stack<Card>(52);
         static Stack<Card> playerTwoStack = new Stack<Card>(52);
 
-        static Action Curset;
+        
 
         static void Main(string[] args)
         {
@@ -49,7 +49,7 @@ namespace Snap_Game
             Card[] cardArray = new Card[52];
             int loopCount = 0;
             //Create cards in array
-            for (int a = 0; a <= 4; a++)
+            for (int a = 0; a < 4; a++)
             {
                 for (int b = 0; b < 12; b++)
                 {
@@ -95,6 +95,7 @@ namespace Snap_Game
 
                     //Say the cards are not yet added to the array
                     cardArray[loopCount].isUsed = false;
+                    loopCount++;
                 }
             }
 
@@ -203,27 +204,38 @@ namespace Snap_Game
         {
             string number = card.number;
             string suitChar = card.suitSymbol;
-
-            Curset = delegate { Console.CursorTop = Console.CursorTop + 1; Console.CursorLeft = Console.CursorLeft - 16; };
+            
+            Action Curset = () =>
+            {
+                Console.CursorTop = Console.CursorTop + 1;
+                Console.CursorLeft = Console.CursorLeft - 16;
+            };
 
             if (number.Length == 1)
             {
                 number = number + " ";
             }
 
-            Console.WriteLine("_________________________________");
+            Console.Write(" ______________ ");
             Curset();
-            Console.WriteLine("| {0}                            |", number);
+            Console.Write(" | " + number + "          | ");
             for (int i = 0; i < 3; i++)
             {
                 Curset();
-                Console.WriteLine("|             {0}                |", suitChar);
+                Console.Write(" |            | ");
             }
             Curset();
-            Console.WriteLine("|                                |");
-            Console.WriteLine("|                            {0} |", number);
+            Console.Write(" |      " + suitChar + "     | ");
+
+            for (int i = 0; i < 3; i++)
+            {
+                Curset();
+                Console.Write(" |            | ");
+            }
             Curset();
-            Console.WriteLine("_________________________________");
+            Console.Write(" |          " + number + " | ");
+            Curset();
+            Console.Write(" _______________ ");
         }
 
         static void Win(string player)
