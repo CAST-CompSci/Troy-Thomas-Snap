@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Snap_Game
 {
@@ -11,7 +9,7 @@ namespace Snap_Game
         public string number, suitSymbol;
         public Boolean isUsed;
     }
-    
+
     class Program
     {
         static Queue<Card> playerOneQueue = new Queue<Card>(52);
@@ -30,7 +28,7 @@ namespace Snap_Game
                 Game();
             }
         }
-        
+
         static void Menu()
         {
             string Option;
@@ -101,7 +99,7 @@ namespace Snap_Game
             }
 
             Random rnd = new Random();
-            for (int a = 0; a <=25; a++)
+            for (int a = 0; a <= 25; a++)
             {
                 int randomNumber = rnd.Next(52);
                 if (cardArray[randomNumber].isUsed == true)
@@ -115,7 +113,7 @@ namespace Snap_Game
                 }
             }
 
-            for (int a = 0; a <=25; a++)
+            for (int a = 0; a <= 25; a++)
             {
                 int randomNumber = rnd.Next(52);
                 if (cardArray[randomNumber].isUsed == true)
@@ -149,10 +147,10 @@ namespace Snap_Game
                 Console.CursorLeft = 20;
                 displayCard(playerTwoStack.Peek());
                 ConsoleKeyInfo key = Console.ReadKey();
-                System.Threading.Thread.Sleep(1000);
+                Thread.Sleep(1000);
                 if (key.Key == ConsoleKey.Z)
                 {
-                    if (playerOneStack.Peek().number ==playerTwoStack.Peek().number)
+                    if (playerOneStack.Peek().number == playerTwoStack.Peek().number)
                     {
                         playerOneScore();
                     }
@@ -173,6 +171,19 @@ namespace Snap_Game
                     }
                 }
 
+            }
+        }
+
+        static void playerTwoScore()
+        {
+            for (int i = 0; i < playerTwoStack.Count - 1; i++)
+            {
+                playerTwoQueue.Enqueue(playerTwoStack.Pop());
+            }
+
+            for (int i = 0; i < playerOneStack.Count - 1; i++)
+            {
+                playerTwoQueue.Enqueue(playerOneStack.Pop());
             }
         }
 
@@ -203,6 +214,7 @@ namespace Snap_Game
             Console.WriteLine("_________________________________");
         }
 
+
         static void playerOneScore()
         {
             for (int a = 0; a < playerTwoStack.Count - 1; a++)
@@ -216,6 +228,11 @@ namespace Snap_Game
         }
 
 
+
+        static void Win(string player)
+        {
+            Console.WriteLine("Congratulations {0} you have won!", player);
+        }
 
     }
 }
