@@ -141,14 +141,19 @@ namespace Snap_Game
                 {
                     Win("Player 2");
                 }
+
                 playerOneStack.Push(playerOneQueue.Dequeue());
                 playerTwoStack.Push(playerTwoQueue.Dequeue());
+
                 Console.CursorLeft = 0;
                 displayCard(playerOneStack.Peek());
+
                 Console.CursorLeft = 20;
                 displayCard(playerTwoStack.Peek());
+
                 ConsoleKeyInfo key = Console.ReadKey();
                 Thread.Sleep(1000);
+
                 if (key.Key == ConsoleKey.Z)
                 {
                     if (playerOneStack.Peek().number == playerTwoStack.Peek().number)
