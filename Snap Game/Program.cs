@@ -174,6 +174,18 @@ namespace Snap_Game
             }
         }
 
+        static void playerOneScore()
+        {
+            for (int a = 0; a < playerTwoStack.Count - 1; a++)
+            {
+                playerOneQueue.Enqueue(playerTwoStack.Pop());
+            }
+            for (int a = 0; a < playerOneStack.Count - 1; a++)
+            {
+                playerOneQueue.Enqueue(playerOneStack.Pop());
+            }
+        }
+
         static void playerTwoScore()
         {
             for (int i = 0; i < playerTwoStack.Count - 1; i++)
@@ -213,21 +225,6 @@ namespace Snap_Game
             Curset();
             Console.WriteLine("_________________________________");
         }
-
-
-        static void playerOneScore()
-        {
-            for (int a = 0; a < playerTwoStack.Count - 1; a++)
-            {
-                playerOneQueue.Enqueue(playerTwoStack.Pop());
-            }
-            for (int a = 0; a < playerOneStack.Count - 1; a++)
-            {
-                playerOneQueue.Enqueue(playerOneStack.Pop());
-            }
-        }
-
-
 
         static void Win(string player)
         {
