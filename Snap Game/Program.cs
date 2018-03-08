@@ -19,6 +19,7 @@ namespace Snap_Game
         static Stack<Card> playerOneStack = new Stack<Card>(52);
         static Stack<Card> playerTwoStack = new Stack<Card>(52);
 
+        static Action Curset;
 
         static void Main(string[] args)
         {
@@ -174,6 +175,35 @@ namespace Snap_Game
 
             }
         }
+
+        static void displayCard(Card card)
+        {
+            string number = card.number;
+            string suitChar = card.suitSymbol;
+
+            Curset = delegate { Console.CursorTop = Console.CursorTop + 1; Console.CursorLeft + 16};
+
+            if (number.Length == 1)
+            {
+                number = number + " ";
+            }
+
+            Console.WriteLine("_________________________________");
+            Curset();
+            Console.WriteLine("| {0}                            |", number);
+            for (int i = 0; i < 3; i++)
+            {
+                Curset();
+                Console.WriteLine("|             {0}                |", suitChar);
+            }
+            Curset();
+            Console.WriteLine("|                                |");
+            Console.WriteLine("|                            {0} |", number);
+            Curset();
+            Console.WriteLine("_________________________________");
+        }
+
+
 
     }
 }
