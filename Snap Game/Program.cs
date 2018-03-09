@@ -51,7 +51,7 @@ namespace Snap_Game
             //Create cards in array
             for (int a = 0; a < 4; a++)
             {
-                for (int b = 0; b < 12; b++)
+                for (int b = 0; b <= 12; b++)
                 {
                     //Create the number/value of the cards
                     if (b == 0)
@@ -127,6 +127,7 @@ namespace Snap_Game
                     cardArray[randomNumber].isUsed = true;
                 }
             }
+            
         }
 
         static void Game()
@@ -221,9 +222,9 @@ namespace Snap_Game
                 number = number + " ";
             }
 
-            Console.Write(" ______________ ");
+            Console.Write("  ______________ ");
             Curset();
-            Console.Write(" | " + number + "          | ");
+            Console.Write(" | " + number + "         | ");
             for (int i = 0; i < 3; i++)
             {
                 Curset();
@@ -238,14 +239,15 @@ namespace Snap_Game
                 Console.Write(" |            | ");
             }
             Curset();
-            Console.Write(" |          " + number + " | ");
+            Console.Write(" |         " + number + " | ");
             Curset();
-            Console.Write(" _______________ ");
+            Console.Write(" ______________ ");
         }
 
         static void Win(string player)
         {
             Console.WriteLine("Congratulations {0} you have won!", player);
+            Thread.Sleep(2000);
         }
 
     }
