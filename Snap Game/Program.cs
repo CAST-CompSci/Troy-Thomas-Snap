@@ -167,8 +167,7 @@ namespace Snap_Game
                 Console.CursorLeft = 20;
                 displayCard(playerTwoStack.Peek());
 
-                ConsoleKeyInfo key = Console.ReadKey();
-                Thread.Sleep(1000);
+                ConsoleKeyInfo key = Console.ReadKey(); 
 
                 if (key.Key == ConsoleKey.Z)
                 {
