@@ -134,6 +134,7 @@ namespace Snap_Game
         {
             while (true)
             {
+                Console.Clear();
                 if (playerOneQueue.Count == 52)
                 {
                     Win("Player 1");
@@ -143,9 +144,23 @@ namespace Snap_Game
                     Win("Player 2");
                 }
 
-                playerOneStack.Push(playerOneQueue.Dequeue());
-                playerTwoStack.Push(playerTwoQueue.Dequeue());
-
+                if (playerOneQueue.Count != 0 & playerTwoQueue.Count != 0)
+                {
+                    playerOneStack.Push(playerOneQueue.Dequeue());
+                    playerTwoStack.Push(playerTwoQueue.Dequeue());
+                }
+                else if (playerOneQueue.Count > playerTwoQueue.Count)
+                {
+                    Win("Player One");
+                }
+                else if (playerTwoQueue.Count > playerOneQueue.Count)
+                {
+                    Win("Player Two");
+                }
+                else
+                {
+                    Win("nobody");
+                }
                 Console.CursorLeft = 0;
                 displayCard(playerOneStack.Peek());
 
@@ -191,6 +206,9 @@ namespace Snap_Game
             {
                 playerOneQueue.Enqueue(playerOneStack.Pop());
             }
+
+            Console.WriteLine("Player One Scored");
+            Thread.Sleep(4000);
         }
 
         static void playerTwoScore()
@@ -204,50 +222,42 @@ namespace Snap_Game
             {
                 playerTwoQueue.Enqueue(playerOneStack.Pop());
             }
+
+            Console.WriteLine("Player Two Scored");
+            Thread.Sleep(4000);
         }
 
         static void displayCard(Card card)
         {
             string number = card.number;
             string suitChar = card.suitSymbol;
-            
-            Action Curset = () =>
-            {
-                Console.CursorTop = Console.CursorTop + 1;
-                Console.CursorLeft = Console.CursorLeft - 16;
-            };
 
             if (number.Length == 1)
             {
                 number = number + " ";
             }
-
-            Console.Write("  ______________ ");
-            Curset();
-            Console.Write(" | " + number + "         | ");
+            Console.WriteLine();
+            Console.WriteLine(" ______________ ");
+            Console.WriteLine(" | " + number + "         | ");
             for (int i = 0; i < 3; i++)
             {
-                Curset();
-                Console.Write(" |            | ");
+                Console.WriteLine(" |            | ");
             }
-            Curset();
-            Console.Write(" |      " + suitChar + "     | ");
+            Console.WriteLine(" |      " + suitChar + "     | ");
 
             for (int i = 0; i < 3; i++)
             {
-                Curset();
-                Console.Write(" |            | ");
+                Console.WriteLine(" |            | ");
             }
-            Curset();
-            Console.Write(" |         " + number + " | ");
-            Curset();
-            Console.Write(" ______________ ");
+            Console.WriteLine(" |         " + number + " | ");
+            Console.WriteLine(" ______________ ");
         }
 
         static void Win(string player)
         {
-            Console.WriteLine("Congratulations {0} you have won!", player);
-            Thread.Sleep(2000);
+            Console.WriteLine("Congratulations {0} has won!", player);
+            Console.ReadLine();
+            Environment.Exit(0);
         }
 
     }
